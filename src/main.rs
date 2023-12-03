@@ -39,6 +39,14 @@ fn main() {
                 Some("3") => {
                     util::bench_solution(3, day_3::part_1::solution);
                     util::bench_solution(3, day_3::part_2::solution);
+                },
+                Some("all") => {
+                    util::bench_solution(1, day_1::part_1::solution);
+                    util::bench_solution(1, day_1::part_2::solution);
+                    util::bench_solution(2, day_2::part_1::solution);
+                    util::bench_solution(2, day_2::part_2::solution);
+                    util::bench_solution(3, day_3::part_1::solution);
+                    util::bench_solution(3, day_3::part_2::solution);
                 }
                 _ => panic!("unknown day"),
             }

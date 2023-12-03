@@ -284,6 +284,6 @@ pub mod part_2 {
 
     #[test]
     pub fn test() {
-        crate::util::test_solution(3, solution, 526404);
+        crate::util::test_solution(3, solution, 84399773);
     }
 }
