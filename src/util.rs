@@ -29,3 +29,14 @@ pub fn test_solution<F, R>(day: usize, func: F, expected: R) where F: FnOnce(Str
 pub fn to_denary(c: char) -> Option<u32> {
 	c.to_digit(10)
 }
+
+pub fn number_length(mut n: u32) -> usize {
+	let mut length = 0;
+
+	while n > 0 {
+		n /= 10;
+		length += 1;
+	}
+
+	length
+}
