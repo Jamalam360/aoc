@@ -1,3 +1,4 @@
+// Looking back, this solution is incredibly stupid. Don't read it.
 pub mod part_1 {
     use crate::util::number_length;
 
@@ -214,9 +215,9 @@ pub mod part_2 {
             .iter()
             .filter(|p| !p.symbols.is_empty())
             .filter(|p| {
-                p.symbols.iter().any(|(line, col)| {
-                    lines[*line].chars().nth(*col).unwrap() == '*'
-                })
+                p.symbols
+                    .iter()
+                    .any(|(line, col)| lines[*line].chars().nth(*col).unwrap() == '*')
             });
 
         let mut products = Vec::new();

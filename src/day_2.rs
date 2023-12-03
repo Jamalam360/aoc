@@ -12,9 +12,21 @@ pub mod part_1 {
                 let count = count.parse::<u32>().ok()?;
 
                 match colour {
-                    "red" => if count > 12 { return None; },
-                    "green" => if count > 13 { return None; },
-                    "blue" => if count > 14 { return None; },
+                    "red" => {
+                        if count > 12 {
+                            return None;
+                        }
+                    }
+                    "green" => {
+                        if count > 13 {
+                            return None;
+                        }
+                    }
+                    "blue" => {
+                        if count > 14 {
+                            return None;
+                        }
+                    }
                     _ => panic!("unknown colour"),
                 }
             }

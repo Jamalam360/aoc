@@ -14,7 +14,6 @@ debug-assertions = false
 codegen-units = 1
 panic = "abort"
 overflow-checks = false
-rpath = false
 incremental = false
 
 [dependencies]
