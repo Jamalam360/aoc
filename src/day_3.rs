@@ -13,8 +13,8 @@ pub mod part_1 {
         let mut potentials: Vec<PotentialPartNumber> = Vec::new();
         let mut previous_line_symbol_columns: Vec<usize> = Vec::new();
 
-        for (line_num, line) in input.split("\n").enumerate() {
-            potentials.retain(|p| !(p.line < line_num - 1 && !p.has_symbol));
+        for (line_num, line) in input.split('\n').enumerate() {
+            potentials.retain(|p| p.line >= line_num - 1 || p.has_symbol);
 
             let mut previous_was_symbol = false;
             let mut current_number: Option<PotentialPartNumber> = None;
@@ -140,7 +140,7 @@ pub mod part_2 {
         let mut potentials: Vec<PotentialPartNumber> = Vec::new();
         let mut previous_line_symbol_columns: Vec<usize> = Vec::new();
 
-        for (line_num, line) in input.split("\n").enumerate() {
+        for (line_num, line) in input.split('\n').enumerate() {
             potentials.retain(|p| !(p.line < line_num - 1 && p.symbols.is_empty()));
 
             let mut previous_was_symbol = false;
@@ -208,7 +208,7 @@ pub mod part_2 {
             previous_line_symbol_columns = this_line_symbol_columns;
         }
 
-        let lines = input.split("\n").collect::<Vec<_>>();
+        let lines = input.split('\n').collect::<Vec<_>>();
 
         let iter = potentials
             .iter()
@@ -229,7 +229,7 @@ pub mod part_2 {
                         *v *= p.number;
                     }
                     None => {
-                        products.push((symbol.clone(), (1, p.number)));
+                        products.push((*symbol, (1, p.number)));
                     }
                 }
             }

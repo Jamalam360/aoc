@@ -2,7 +2,7 @@ pub mod part_1 {
     use crate::util::to_denary;
 
     pub fn solution(input: String) -> u32 {
-        input.split("\n").map(line_value).sum()
+        input.split('\n').map(line_value).sum()
     }
 
     fn line_value(line: &str) -> u32 {
@@ -28,12 +28,10 @@ pub mod part_1 {
                 left_ptr += 1;
             }
 
-            if right_ptr > 0 {
-                right_ptr -= 1;
-            }
+            right_ptr = right_ptr.saturating_sub(1);
         }
 
-        return left.and_then(to_denary).unwrap() * 10 + right.and_then(to_denary).unwrap();
+        left.and_then(to_denary).unwrap() * 10 + right.and_then(to_denary).unwrap()
     }
 
     #[test]
@@ -46,7 +44,7 @@ pub mod part_2 {
     use crate::util::to_denary;
 
     pub fn solution(input: String) -> u32 {
-        input.split("\n").map(line_value).sum()
+        input.split('\n').map(line_value).sum()
     }
 
     fn line_value(line: &str) -> u32 {
@@ -64,12 +62,10 @@ pub mod part_2 {
                 left_ptr += 1;
             }
 
-            if right_ptr > 0 {
-                right_ptr -= 1;
-            }
+            right_ptr = right_ptr.saturating_sub(1);
         }
 
-        return left.unwrap() * 10 + right.unwrap();
+        left.unwrap() * 10 + right.unwrap()
     }
 
     const DIGITS: &[&[u8]] = &[

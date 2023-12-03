@@ -1,6 +1,6 @@
 pub mod part_1 {
     pub fn solution(input: String) -> u32 {
-        input.split("\n").filter_map(get_id_if_valid).sum()
+        input.split('\n').filter_map(get_id_if_valid).sum()
     }
 
     fn get_id_if_valid(line: &str) -> Option<u32> {
@@ -8,7 +8,7 @@ pub mod part_1 {
 
         for game in games.split("; ") {
             for s in game.split(", ") {
-                let (count, colour) = s.split_once(" ")?;
+                let (count, colour) = s.split_once(' ')?;
                 let count = count.parse::<u32>().ok()?;
 
                 match colour {
@@ -31,7 +31,7 @@ pub mod part_1 {
 
 pub mod part_2 {
     pub fn solution(input: String) -> u32 {
-        input.split("\n").map(get_power).sum()
+        input.split('\n').map(get_power).sum()
     }
 
     fn get_power(line: &str) -> u32 {
@@ -42,7 +42,7 @@ pub mod part_2 {
             let mut min_for_game: [u32; 3] = [0, 0, 0];
 
             for s in game.split(", ") {
-                let (count, colour) = s.split_once(" ").unwrap();
+                let (count, colour) = s.split_once(' ').unwrap();
                 let count = count.parse::<u32>().unwrap();
 
                 match colour {
