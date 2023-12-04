@@ -18,7 +18,8 @@ where
 {
     let mut sum = 0;
 
-    for _ in 0..10_000 {
+    for _ in 0..1_000 {
+        // yes, reading the file every iteration. I'm lazy
         let input = std::fs::read_to_string(format!("src/inputs/{}.txt", day))
             .expect("unable to read input file");
         let instant = std::time::Instant::now();
@@ -26,7 +27,7 @@ where
         sum += instant.elapsed().as_micros();
     }
 
-    println!("Took {}micros on average", sum / 10_000);
+    println!("Took {}micros on average", sum / 1_000);
 }
 
 #[cfg(test)]
