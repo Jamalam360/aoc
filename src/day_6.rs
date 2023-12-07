@@ -71,6 +71,6 @@ pub mod part_2 {
 
     #[test]
     pub fn test() {
-        crate::util::test_solution(7, solution, 45647654);
+        crate::util::test_solution(6, solution, 45647654);
     }
 }

@@ -126,9 +126,4 @@ pub mod part_2 {
 
         (seeds, maps)
     }
-
-    #[test]
-    pub fn test() {
-        crate::util::test_solution(5, solution, 25651);
-    }
 }

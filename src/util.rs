@@ -36,7 +36,7 @@ where
 pub fn test_solution<F, R>(day: usize, func: F, expected: R)
 where
     F: FnOnce(String) -> R,
-    R: std::fmt::Display + std::cmp::PartialEq + std::fmt::Debug,
+    R: std::fmt::Display + PartialEq + std::fmt::Debug,
 {
     let input = std::fs::read_to_string(format!("src/inputs/{}.txt", day))
         .expect("unable to read input file");
