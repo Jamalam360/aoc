@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 pub fn run_solution<F, R>(day: usize, func: F)
 where
     F: FnOnce(String) -> R,
@@ -16,7 +18,7 @@ where
     F: Fn(String) -> R,
     R: std::fmt::Display,
 {
-    let mut sum = 0;
+    let mut sum = Duration::new(0, 0);
 
     for _ in 0..1_000 {
         // yes, reading the file every iteration. I'm lazy
@@ -24,10 +26,10 @@ where
             .expect("unable to read input file");
         let instant = std::time::Instant::now();
         func(input);
-        sum += instant.elapsed().as_micros();
+        sum += instant.elapsed();
     }
 
-    println!("Took {}micros on average", sum / 1_000);
+    println!("Took {:?} on average", sum / 1_000);
 }
 
 #[cfg(test)]
@@ -55,4 +57,22 @@ pub fn number_length(mut n: u32) -> usize {
     }
 
     length
+}
+
+#[inline(always)]
+pub fn solve_quadratic(a: i32, b: i32, c: i32) -> (f32, f32) {
+    let discrim = (b as f32).powi(2) - 4.0 * (a as f32) * (c as f32);
+    let root = discrim.sqrt();
+    let denom = 2.0 * (a as f32);
+
+    ((-b as f32 + root) / denom, (-b as f32 - root) / denom)
+}
+
+#[inline(always)]
+pub fn solve_long_quadratic(a: i64, b: i64, c: i64) -> (f64, f64) {
+    let discrim = (b as f64).powi(2) - 4.0 * (a as f64) * (c as f64);
+    let root = discrim.sqrt();
+    let denom = 2.0 * (a as f64);
+
+    ((-b as f64 + root) / denom, (-b as f64 - root) / denom)
 }

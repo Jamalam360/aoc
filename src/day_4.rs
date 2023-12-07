@@ -29,11 +29,11 @@ pub mod part_1 {
         let mut i = 0;
 
         while let Some(c) = chars.next() {
-            if c.is_digit(10) {
+            if c.is_ascii_digit() {
                 let mut num = to_denary(c).unwrap();
 
-                while let Some(c) = chars.next() {
-                    if c.is_digit(10) {
+                for c in chars.by_ref() {
+                    if c.is_ascii_digit() {
                         num *= 10;
                         num += to_denary(c).unwrap();
                     } else {
@@ -93,11 +93,11 @@ pub mod part_2 {
         let mut i = 0;
 
         while let Some(c) = chars.next() {
-            if c.is_digit(10) {
+            if c.is_ascii_digit() {
                 let mut num = to_denary(c).unwrap();
 
-                while let Some(c) = chars.next() {
-                    if c.is_digit(10) {
+                for c in chars.by_ref() {
+                    if c.is_ascii_digit() {
                         num *= 10;
                         num += to_denary(c).unwrap();
                     } else {
