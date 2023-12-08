@@ -38,7 +38,12 @@ pub mod part_1 {
                             .split_once(',')
                             .map(|a| (a.0, &a.1[1..a.1.len() - 1]))
                             .map(|(l, r)| (l.as_bytes(), r.as_bytes()))
-                            .map(|(l, r)| (u32::from_be_bytes([0, l[0], l[1], l[2]]), u32::from_be_bytes([0 ,r[0], r[1], r[2]])))
+                            .map(|(l, r)| {
+                                (
+                                    u32::from_be_bytes([0, l[0], l[1], l[2]]),
+                                    u32::from_be_bytes([0, r[0], r[1], r[2]]),
+                                )
+                            })
                             .unwrap(),
                     )
                 })
@@ -47,7 +52,10 @@ pub mod part_1 {
             branches.insert(k, v);
         }
 
-        (instructions.as_bytes().iter().map(|b| *b == b'R').collect(), branches)
+        (
+            instructions.as_bytes().iter().map(|b| *b == b'R').collect(),
+            branches,
+        )
     }
 
     #[test]
@@ -65,8 +73,7 @@ pub mod part_2 {
 
     pub fn solution(input: String) -> usize {
         let (instructions, path) = parse(&input);
-        path
-            .keys()
+        path.keys()
             .filter(|k| k.to_be_bytes()[3] == A)
             .map(|v| get_path_length(&instructions, &path, *v))
             .fold(1, |acc, b| crate::util::lcm(acc, b))
@@ -106,7 +113,12 @@ pub mod part_2 {
                             .split_once(',')
                             .map(|a| (a.0, &a.1[1..a.1.len() - 1]))
                             .map(|(l, r)| (l.as_bytes(), r.as_bytes()))
-                            .map(|(l, r)| (u32::from_be_bytes([0, l[0], l[1], l[2]]), u32::from_be_bytes([0 ,r[0], r[1], r[2]])))
+                            .map(|(l, r)| {
+                                (
+                                    u32::from_be_bytes([0, l[0], l[1], l[2]]),
+                                    u32::from_be_bytes([0, r[0], r[1], r[2]]),
+                                )
+                            })
                             .unwrap(),
                     )
                 })
@@ -115,7 +127,10 @@ pub mod part_2 {
             branches.insert(k, v);
         }
 
-        (instructions.as_bytes().iter().map(|b| *b == b'R').collect(), branches)
+        (
+            instructions.as_bytes().iter().map(|b| *b == b'R').collect(),
+            branches,
+        )
     }
 
     #[test]

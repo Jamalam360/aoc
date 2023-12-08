@@ -117,8 +117,8 @@ pub mod part_1 {
 }
 
 pub mod part_2 {
-    use std::cmp::Ordering;
     use crate::util;
+    use std::cmp::Ordering;
 
     pub fn solution(input: String) -> u32 {
         let mut result = parse(&input);
