@@ -119,6 +119,7 @@ pub mod part_1 {
 // prepare for most sane advent of code solution
 pub mod part_2 {
     use std::cmp::Ordering;
+    use crate::util;
 
     pub fn solution(input: String) -> u32 {
         let mut result = parse(&input);
@@ -145,7 +146,6 @@ pub mod part_2 {
             .fold(0u32, |acc, (rank, r)| acc + (rank as u32 + 1) * r.2)
     }
 
-    #[derive(Debug)]
     enum HandType {
         FiveOfAKind,
         FourOfAKind,
@@ -200,82 +200,28 @@ pub mod part_2 {
             }
 
             let mut kind = None;
-
+            cards[util::max_position(cards.iter().skip(1)).unwrap() + 1] += cards[0];
+            cards[0] = 0;
             let len = cards.iter().filter(|v| **v != 0).count();
 
-            // ugly af
-            if len == 1 {
+            if len < 2 {
                 kind = Some(HandType::FiveOfAKind);
             } else if len == 2 {
                 if cards.iter().any(|c| *c == 4) {
-                    if cards[0] > 0 {
-                        kind = Some(HandType::FiveOfAKind);
-                    } else {
-                        kind = Some(HandType::FourOfAKind);
-                    }
-                } else if (cards[0] == 2 && cards.iter().any(|c| *c == 3))
-                    || (cards[0] == 3 && cards.iter().any(|c| *c == 2))
-                {
-                    kind = Some(HandType::FiveOfAKind);
-                } else if cards[0] == 1 {
                     kind = Some(HandType::FourOfAKind);
                 } else {
                     kind = Some(HandType::FullHouse);
                 }
             } else if len == 3 {
                 if cards.iter().any(|c| *c == 2) {
-                    if cards[0] == 1 {
-                        if cards.iter().filter(|c| **c == 2).count() == 2 {
-                            kind = Some(HandType::FullHouse);
-                        } else {
-                            kind = Some(HandType::ThreeOfAKind);
-                        }
-                    } else if cards[0] == 2 {
-                        if cards.iter().filter(|c| **c == 2).count() == 2 {
-                            kind = Some(HandType::FourOfAKind);
-                        } else {
-                            kind = Some(HandType::ThreeOfAKind);
-                        }
-                    } else {
-                        kind = Some(HandType::TwoPair);
-                    }
-                } else if cards.iter().any(|c| *c == 3) {
-                    if cards[0] == 3 || cards[0] == 1 {
-                        kind = Some(HandType::FourOfAKind);
-                    } else {
-                        kind = Some(HandType::ThreeOfAKind);
-                    }
-                } else if cards[0] == 1 {
-                    kind = Some(HandType::ThreeOfAKind);
-                } else if cards[0] == 2 {
-                    kind = Some(HandType::FullHouse);
+                    kind = Some(HandType::TwoPair);
                 } else {
                     kind = Some(HandType::ThreeOfAKind);
                 }
             } else if len == 4 {
-                if cards[0] == 1 {
-                    if cards.iter().any(|c| *c == 2) {
-                        kind = Some(HandType::ThreeOfAKind);
-                    } else {
-                        kind = Some(HandType::TwoPair);
-                    }
-                } else if cards[0] == 2 {
-                    kind = Some(HandType::ThreeOfAKind);
-                } else {
-                    kind = Some(HandType::OnePair);
-                }
+                kind = Some(HandType::OnePair);
             } else if len == 5 {
-                if cards[0] == 1 || cards[0] == 2 {
-                    kind = Some(HandType::OnePair);
-                } else if cards[0] == 3 {
-                    kind = Some(HandType::ThreeOfAKind);
-                } else if cards[0] == 4 {
-                    kind = Some(HandType::FourOfAKind);
-                } else if cards[0] == 5 {
-                    kind = Some(HandType::FiveOfAKind);
-                } else {
-                    kind = Some(HandType::HighCard);
-                }
+                kind = Some(HandType::HighCard);
             }
 
             result.push((kind.unwrap(), scores, bid.parse::<u32>().unwrap()));
@@ -286,6 +232,6 @@ pub mod part_2 {
 
     #[test]
     pub fn test() {
-        crate::util::test_solution(7, solution, 249781879);
+        util::test_solution(7, solution, 249781879);
     }
 }

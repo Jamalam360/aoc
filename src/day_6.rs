@@ -39,7 +39,7 @@ pub mod part_1 {
 
     #[test]
     pub fn test() {
-        crate::util::test_solution(6, solution, 316800);
+        util::test_solution(6, solution, 316800);
     }
 }
 
@@ -71,6 +71,6 @@ pub mod part_2 {
 
     #[test]
     pub fn test() {
-        crate::util::test_solution(6, solution, 45647654);
+        util::test_solution(6, solution, 45647654);
     }
 }

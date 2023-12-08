@@ -94,3 +94,27 @@ pub fn gcd(mut a: usize, mut b: usize) -> usize {
 pub fn lcm(a: usize, b: usize) -> usize {
     a * (b / gcd(a, b))
 }
+
+/// The position of iter.max()
+#[inline(always)]
+pub fn max_position<I>(mut iter: impl Iterator<Item = I>) -> Option<usize>
+where
+    I: Ord,
+{
+    let mut i = 0usize;
+    let mut max = None;
+
+    while let Some(next) = iter.next() {
+        if let Some((_, prev_max)) = &max {
+            if &next > prev_max {
+                max = Some((i, next))
+            }
+        } else {
+            max = Some((i, next));
+        }
+
+        i += 1;
+    }
+
+    max.map(|i| i.0)
+}
