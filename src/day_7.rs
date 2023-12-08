@@ -116,7 +116,6 @@ pub mod part_1 {
     }
 }
 
-// prepare for most sane advent of code solution
 pub mod part_2 {
     use std::cmp::Ordering;
     use crate::util;
