@@ -76,3 +76,21 @@ pub fn solve_long_quadratic(a: i64, b: i64, c: i64) -> (f64, f64) {
 
     ((-b as f64 + root) / denom, (-b as f64 - root) / denom)
 }
+
+#[inline(always)]
+pub fn gcd(mut a: usize, mut b: usize) -> usize {
+    while b != 0 {
+        if b < a {
+            std::mem::swap(&mut b, &mut a);
+        }
+
+        b %= a;
+    }
+
+    a
+}
+
+#[inline(always)]
+pub fn lcm(a: usize, b: usize) -> usize {
+    a * (b / gcd(a, b))
+}

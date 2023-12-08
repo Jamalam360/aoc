@@ -7,6 +7,7 @@ mod day_4;
 mod day_5;
 mod day_6;
 mod day_7;
+mod day_8;
 mod util;
 
 fn main() {
@@ -42,6 +43,10 @@ fn main() {
                 util::run_solution(7, day_7::part_1::solution);
                 util::run_solution(7, day_7::part_2::solution);
             }
+            Some("8") => {
+                util::run_solution(8, day_8::part_1::solution);
+                util::run_solution(8, day_8::part_2::solution);
+            }
             _ => panic!("unknown day"),
         },
         Some("bench") => match args.next().as_deref() {
@@ -73,6 +78,10 @@ fn main() {
                 util::bench_solution(7, day_7::part_1::solution);
                 util::bench_solution(7, day_7::part_2::solution);
             }
+            Some("8") => {
+                util::bench_solution(8, day_8::part_1::solution);
+                util::bench_solution(8, day_8::part_2::solution);
+            }
             Some("all") => {
                 util::bench_solution(1, day_1::part_1::solution);
                 util::bench_solution(1, day_1::part_2::solution);
@@ -88,6 +97,8 @@ fn main() {
                 util::bench_solution(6, day_6::part_2::solution);
                 util::bench_solution(7, day_7::part_1::solution);
                 util::bench_solution(7, day_7::part_2::solution);
+                util::bench_solution(8, day_8::part_1::solution);
+                util::bench_solution(8, day_8::part_2::solution);
             }
             _ => panic!("unknown day"),
         },
