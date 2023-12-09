@@ -8,6 +8,7 @@ mod day_5;
 mod day_6;
 mod day_7;
 mod day_8;
+mod day_9;
 mod util;
 
 fn main() {
@@ -47,6 +48,10 @@ fn main() {
                 util::run_solution(8, day_8::part_1::solution);
                 util::run_solution(8, day_8::part_2::solution);
             }
+            Some("9") => {
+                util::run_solution(9, day_9::part_1::solution);
+                util::run_solution(9, day_9::part_2::solution);
+            }
             _ => panic!("unknown day"),
         },
         Some("bench") => match args.next().as_deref() {
@@ -68,7 +73,8 @@ fn main() {
             }
             Some("5") => {
                 util::bench_solution(5, day_5::part_1::solution);
-                util::bench_solution(5, day_5::part_2::solution);
+                // Can't run this because it's really really slow (> 1 hr)
+                // util::bench_solution(5, day_5::part_2::solution);
             }
             Some("6") => {
                 util::bench_solution(6, day_6::part_1::solution);
@@ -82,6 +88,10 @@ fn main() {
                 util::bench_solution(8, day_8::part_1::solution);
                 util::bench_solution(8, day_8::part_2::solution);
             }
+            Some("9") => {
+                util::bench_solution(9, day_9::part_1::solution);
+                util::bench_solution(9, day_9::part_2::solution);
+            }
             Some("all") => {
                 util::bench_solution(1, day_1::part_1::solution);
                 util::bench_solution(1, day_1::part_2::solution);
@@ -92,13 +102,16 @@ fn main() {
                 util::bench_solution(4, day_4::part_1::solution);
                 util::bench_solution(4, day_4::part_2::solution);
                 util::bench_solution(5, day_5::part_1::solution);
-                util::bench_solution(5, day_5::part_2::solution);
+                // Can't run this because it's really really slow (> 1 hr)
+                // util::bench_solution(5, day_5::part_2::solution);
                 util::bench_solution(6, day_6::part_1::solution);
                 util::bench_solution(6, day_6::part_2::solution);
                 util::bench_solution(7, day_7::part_1::solution);
                 util::bench_solution(7, day_7::part_2::solution);
                 util::bench_solution(8, day_8::part_1::solution);
                 util::bench_solution(8, day_8::part_2::solution);
+                util::bench_solution(9, day_9::part_1::solution);
+                util::bench_solution(9, day_9::part_2::solution);
             }
             _ => panic!("unknown day"),
         },

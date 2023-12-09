@@ -118,3 +118,57 @@ where
 
     max.map(|i| i.0)
 }
+
+pub struct Difference<I>
+where
+    I: Iterator,
+    I::Item: std::ops::Sub<Output = I::Item> + Clone + Copy,
+{
+    underlying: I,
+    previous: Option<I::Item>,
+}
+
+impl<I> Difference<I>
+where
+    I: Iterator,
+    I::Item: std::ops::Sub<Output = I::Item> + Clone + Copy,
+{
+    fn new(mut iterator: I) -> Self {
+        Difference {
+            previous: iterator.next(),
+            underlying: iterator,
+        }
+    }
+}
+
+impl<I> Iterator for Difference<I>
+where
+    I: Iterator,
+    I::Item: std::ops::Sub<Output = I::Item> + Clone + Copy,
+{
+    type Item = I::Item;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let next_item = self.underlying.next()?;
+
+        let diff = match self.previous.take() {
+            Some(prev) => Some(next_item - prev),
+            None => None,
+        };
+
+        self.previous = Some(next_item);
+        Some(diff).flatten()
+    }
+}
+
+pub trait DifferenceExt: Iterator {
+    fn differences(self) -> Difference<Self>
+    where
+        Self: Sized,
+        Self::Item: std::ops::Sub<Output = Self::Item> + Clone + Copy,
+    {
+        Difference::new(self)
+    }
+}
+
+impl<I: Iterator> DifferenceExt for I {}
