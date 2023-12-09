@@ -7,17 +7,14 @@ pub mod part_1 {
 
     fn find_next_term(sequence: &mut Vec<i32>) -> i32 {
         let mut differences = sequence.iter().cloned().differences().collect::<Vec<_>>();
-        let mut values = Vec::new();
+        let mut next_term = *sequence.last().unwrap();
 
         loop {
             if differences.iter().all(|d| *d == 0) {
-                return values
-                    .iter()
-                    .fold(*sequence.last().unwrap(), |acc, b| acc + b);
+                return next_term;
             }
 
-            values.push(differences[differences.len() - 1]);
-
+            next_term += differences[differences.len() - 1];
             differences = differences.iter().cloned().differences().collect();
         }
     }
@@ -61,14 +58,13 @@ pub mod part_2 {
                         .iter()
                         .rev()
                         .fold(None, |acc, &x| match acc {
-                            Some(val) => Some(x - val),
+                            Some(acc) => Some(x - acc),
                             None => Some(x),
                         })
                         .unwrap();
             }
 
             values.push(differences[0]);
-
             differences = differences.iter().cloned().differences().collect();
         }
     }
