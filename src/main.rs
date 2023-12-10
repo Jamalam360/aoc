@@ -9,9 +9,20 @@ mod day_6;
 mod day_7;
 mod day_8;
 mod day_9;
+mod day_10;
 mod util;
 
 fn main() {
+    println!("{}", day_10::part_2::solution(r#"..........
+.S------7.
+.|F----7|.
+.||....||.
+.||....||.
+.|L-7F-J|.
+.|..||..|.
+.L--JL--J.
+.........."#.to_string()));
+
     let mut args = std::env::args().skip(1);
 
     match args.next().as_deref() {
@@ -51,6 +62,10 @@ fn main() {
             Some("9") => {
                 util::run_solution(9, day_9::part_1::solution);
                 util::run_solution(9, day_9::part_2::solution);
+            }
+            Some("10") => {
+                util::run_solution(10, day_10::part_1::solution);
+                util::run_solution(10, day_10::part_2::solution);
             }
             _ => panic!("unknown day"),
         },
@@ -92,6 +107,10 @@ fn main() {
                 util::bench_solution(9, day_9::part_1::solution);
                 util::bench_solution(9, day_9::part_2::solution);
             }
+            Some("10") => {
+                util::bench_solution(10, day_10::part_1::solution);
+                util::bench_solution(10, day_10::part_2::solution);
+            }
             Some("all") => {
                 util::bench_solution(1, day_1::part_1::solution);
                 util::bench_solution(1, day_1::part_2::solution);
@@ -112,6 +131,8 @@ fn main() {
                 util::bench_solution(8, day_8::part_2::solution);
                 util::bench_solution(9, day_9::part_1::solution);
                 util::bench_solution(9, day_9::part_2::solution);
+                util::bench_solution(10, day_10::part_1::solution);
+                util::bench_solution(10, day_10::part_2::solution);
             }
             _ => panic!("unknown day"),
         },
