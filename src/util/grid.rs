@@ -1,10 +1,26 @@
 use std::fmt::{Debug, Display, Formatter, Write};
 use std::ops::Index;
 
-/// A 2D grid of `char`s
+/// Transposes a `Vec<Vec<T>>`. Based on [this StackOverflow answer](https://stackoverflow.com/questions/64498617/how-to-transpose-a-vector-of-vectors-in-rust)
+pub fn transpose<T>(original: &Vec<Vec<T>>) -> Vec<Vec<T>>
+where
+    T: Clone,
+{
+    let mut transposed = (0..original[0].len()).map(|_| vec![]).collect::<Vec<_>>();
+
+    for original_row in original {
+        for (item, transposed_row) in original_row.into_iter().zip(&mut transposed) {
+            transposed_row.push(item.clone());
+        }
+    }
+
+    transposed
+}
+
+/// A 2D grid of `char`s. Immutable until I need mutability.
 pub struct Grid {
     backer: Vec<Vec<char>>,
-    rows: Vec<Vec<char>>,
+    transposed_backer: Vec<Vec<char>>,
 }
 
 impl Grid {
@@ -21,18 +37,10 @@ impl Grid {
             }
         }
 
-        let rows = (0..backer[0].len())
-            .map(|row| backer.iter().map(|c| c[row]).collect::<Vec<_>>())
-            .collect();
-
-        Self { backer, rows }
-    }
-
-    /// Rebuilds the grid. Call when the grid has been updated.
-    pub fn rebuild(&mut self) {
-        self.rows = (0..self.backer[0].len())
-            .map(|row| self.iter_columns().map(|c| c[row]).collect::<Vec<_>>())
-            .collect();
+        Self {
+            transposed_backer: transpose(&backer),
+            backer,
+        }
     }
 
     /// Returns an iterator over the columns of this grid
@@ -42,7 +50,7 @@ impl Grid {
 
     /// Returns an iterator over the rows of this grid
     pub fn iter_rows(&self) -> impl Iterator<Item = &Vec<char>> {
-        self.rows.iter()
+        self.transposed_backer.iter()
     }
 
     /// Returns an iterator over all coordinates in this grid
