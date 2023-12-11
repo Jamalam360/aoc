@@ -17,3 +17,4 @@ overflow-checks = false
 incremental = false
 
 [dependencies]
+itertools = "0.12.0"

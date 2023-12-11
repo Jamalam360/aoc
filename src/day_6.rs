@@ -7,7 +7,7 @@ pub mod part_1 {
 
         for idx in 0..result[0].len() {
             let (sol_1, sol_2) = util::solve_quadratic(-1, result[0][idx], -result[1][idx]);
-            product *= (sol_2.ceil() - sol_1.floor() - 1f32) as u32;
+            product *= (sol_2.ceil() - sol_1.floor() - 1f64) as u32;
         }
 
         product
@@ -48,7 +48,7 @@ pub mod part_2 {
 
     pub fn solution(input: String) -> u32 {
         let (time, distance) = parse::<4>(&input);
-        let (sol_1, sol_2) = util::solve_long_quadratic(-1, time, -distance);
+        let (sol_1, sol_2) = util::solve_quadratic(-1f64, time as f64, -distance as f64);
         (sol_2.floor() as u64 - sol_1.floor() as u64) as u32
     }
 

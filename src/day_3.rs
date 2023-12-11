@@ -4,13 +4,13 @@ pub mod part_1 {
 
     #[derive(Debug)]
     struct PotentialPartNumber {
-        number: u32,
+        number: usize,
         line: usize,
         column: usize,
         has_symbol: bool,
     }
 
-    pub fn solution(input: String) -> u32 {
+    pub fn solution(input: String) -> usize {
         let mut potentials: Vec<PotentialPartNumber> = Vec::new();
         let mut previous_line_symbol_columns: Vec<usize> = Vec::new();
 
@@ -24,10 +24,10 @@ pub mod part_1 {
             for (column, c) in line.chars().enumerate() {
                 if c.is_ascii_digit() {
                     match current_number {
-                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap(),
+                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap() as usize,
                         None => {
                             current_number = Some(PotentialPartNumber {
-                                number: c.to_digit(10).unwrap(),
+                                number: c.to_digit(10).unwrap() as usize,
                                 line: line_num,
                                 column,
                                 has_symbol: previous_was_symbol,
@@ -77,7 +77,7 @@ pub mod part_1 {
             .iter()
             .filter(|p| p.has_symbol)
             .map(|p| p.number)
-            .sum::<u32>()
+            .sum()
     }
 
     fn is_symbol(c: char) -> bool {
@@ -131,13 +131,13 @@ pub mod part_2 {
 
     #[derive(Debug)]
     struct PotentialPartNumber {
-        number: u32,
+        number: usize,
         line: usize,
         column: usize,
         symbols: Vec<(usize, usize)>,
     }
 
-    pub fn solution(input: String) -> u32 {
+    pub fn solution(input: String) -> usize {
         let mut potentials: Vec<PotentialPartNumber> = Vec::new();
         let mut previous_line_symbol_columns: Vec<usize> = Vec::new();
 
@@ -151,10 +151,10 @@ pub mod part_2 {
             for (column, c) in line.chars().enumerate() {
                 if c.is_ascii_digit() {
                     match current_number {
-                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap(),
+                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap() as usize,
                         None => {
                             current_number = Some(PotentialPartNumber {
-                                number: c.to_digit(10).unwrap(),
+                                number: c.to_digit(10).unwrap() as usize,
                                 line: line_num,
                                 column,
                                 symbols: if previous_was_symbol {

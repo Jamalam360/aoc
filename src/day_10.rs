@@ -157,6 +157,7 @@ pub mod part_2 {
         let mut count = 0;
         let mut upwards_facing_pipes_to_left = 0;
 
+        //TODO: replace with the Grid util class.
         for y in 0..grid[0].len() {
             for x in 0..grid.len() {
                 if path.contains(&(x, y)) {

@@ -199,7 +199,7 @@ pub mod part_2 {
             }
 
             let mut kind = None;
-            cards[util::max_position(cards.iter().skip(1)).unwrap() + 1] += cards[0];
+            cards[util::index_of_max(cards.iter().skip(1)).unwrap() + 1] += cards[0];
             cards[0] = 0;
             let len = cards.iter().filter(|v| **v != 0).count();
 
