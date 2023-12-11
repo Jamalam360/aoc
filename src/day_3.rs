@@ -24,7 +24,9 @@ pub mod part_1 {
             for (column, c) in line.chars().enumerate() {
                 if c.is_ascii_digit() {
                     match current_number {
-                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap() as usize,
+                        Some(ref mut p) => {
+                            p.number = p.number * 10 + c.to_digit(10).unwrap() as usize
+                        }
                         None => {
                             current_number = Some(PotentialPartNumber {
                                 number: c.to_digit(10).unwrap() as usize,
@@ -151,7 +153,9 @@ pub mod part_2 {
             for (column, c) in line.chars().enumerate() {
                 if c.is_ascii_digit() {
                     match current_number {
-                        Some(ref mut p) => p.number = p.number * 10 + c.to_digit(10).unwrap() as usize,
+                        Some(ref mut p) => {
+                            p.number = p.number * 10 + c.to_digit(10).unwrap() as usize
+                        }
                         None => {
                             current_number = Some(PotentialPartNumber {
                                 number: c.to_digit(10).unwrap() as usize,

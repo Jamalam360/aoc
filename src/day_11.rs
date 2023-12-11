@@ -1,6 +1,6 @@
 pub mod part_1 {
-    use itertools::Itertools;
     use crate::util::Grid;
+    use itertools::Itertools;
 
     pub fn solution(input: String) -> usize {
         let grid = Grid::parse(&input);
@@ -11,16 +11,13 @@ pub mod part_1 {
             .enumerate()
             .map(|(_, c)| c.iter().any(|c| *c == '#'))
             .collect::<Vec<_>>();
-        let row_has_galaxy =  grid
+        let row_has_galaxy = grid
             .iter_rows()
             .enumerate()
             .map(|(_, c)| c.iter().any(|c| *c == '#'))
             .collect::<Vec<_>>();
 
-        for pair in grid
-            .find('#')
-            .combinations(2)
-        {
+        for pair in grid.find('#').combinations(2) {
             let g1 = pair[0];
             let g2 = pair[1];
             let x_min = g1.0.min(g2.0);
@@ -55,8 +52,8 @@ pub mod part_1 {
 }
 
 pub mod part_2 {
-    use itertools::Itertools;
     use crate::util::Grid;
+    use itertools::Itertools;
 
     pub fn solution(input: String) -> usize {
         let grid = Grid::parse(&input);
@@ -67,16 +64,13 @@ pub mod part_2 {
             .enumerate()
             .map(|(_, c)| c.iter().any(|c| *c == '#'))
             .collect::<Vec<_>>();
-        let row_has_galaxy =  grid
+        let row_has_galaxy = grid
             .iter_rows()
             .enumerate()
             .map(|(_, c)| c.iter().any(|c| *c == '#'))
             .collect::<Vec<_>>();
 
-        for pair in grid
-            .find('#')
-            .combinations(2)
-        {
+        for pair in grid.find('#').combinations(2) {
             let g1 = pair[0];
             let g2 = pair[1];
             let x_min = g1.0.min(g2.0);
@@ -109,4 +103,3 @@ pub mod part_2 {
         crate::util::test_solution(11, solution, 512240933238);
     }
 }
-

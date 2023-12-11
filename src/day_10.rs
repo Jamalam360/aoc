@@ -162,7 +162,8 @@ pub mod part_2 {
             for x in 0..grid.len() {
                 if path.contains(&(x, y)) {
                     let pipe = grid[x][y];
-                    if pipe == '|' || pipe == 'L' || pipe == 'J' || (pipe == 'S' && s_has_north_end) {
+                    if pipe == '|' || pipe == 'L' || pipe == 'J' || (pipe == 'S' && s_has_north_end)
+                    {
                         upwards_facing_pipes_to_left += 1;
                     }
                 } else if upwards_facing_pipes_to_left % 2 == 1 {

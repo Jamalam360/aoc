@@ -32,7 +32,6 @@ where
     ((-b_f64 + root) / denom, (-b_f64 - root) / denom)
 }
 
-
 /// Greatest Common Divisor/Denominator of two numbers
 #[inline(always)]
 pub fn gcd(mut a: usize, mut b: usize) -> usize {

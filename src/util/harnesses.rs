@@ -1,9 +1,9 @@
 use std::time::Duration;
 
 pub fn run_solution<F, R>(day: usize, func: F)
-    where
-        F: FnOnce(String) -> R,
-        R: std::fmt::Display,
+where
+    F: FnOnce(String) -> R,
+    R: std::fmt::Display,
 {
     let input = std::fs::read_to_string(format!("src/inputs/{}.txt", day))
         .expect("unable to read input file");
@@ -14,9 +14,9 @@ pub fn run_solution<F, R>(day: usize, func: F)
 }
 
 pub fn bench_solution<F, R>(day: usize, func: F)
-    where
-        F: Fn(String) -> R,
-        R: std::fmt::Display,
+where
+    F: Fn(String) -> R,
+    R: std::fmt::Display,
 {
     let mut sum = Duration::new(0, 0);
 
@@ -34,9 +34,9 @@ pub fn bench_solution<F, R>(day: usize, func: F)
 
 #[cfg(test)]
 pub fn test_solution<F, R>(day: usize, func: F, expected: R)
-    where
-        F: FnOnce(String) -> R,
-        R: std::fmt::Display + PartialEq + std::fmt::Debug,
+where
+    F: FnOnce(String) -> R,
+    R: std::fmt::Display + PartialEq + std::fmt::Debug,
 {
     let input = std::fs::read_to_string(format!("src/inputs/{}.txt", day))
         .expect("unable to read input file");

@@ -47,16 +47,18 @@ impl Grid {
 
     /// Returns an iterator over all coordinates in this grid
     pub fn iter_points<'a>(&'a self) -> impl Iterator<Item = (usize, usize)> + 'a {
-        self.iter_rows().enumerate().flat_map(move |(row_idx, row)| {
-            row.iter().enumerate().map(move |(col_idx, _)| (col_idx, row_idx))
-        })
+        self.iter_rows()
+            .enumerate()
+            .flat_map(move |(row_idx, row)| {
+                row.iter()
+                    .enumerate()
+                    .map(move |(col_idx, _)| (col_idx, row_idx))
+            })
     }
 
     /// Returns an iterator over all the coordinates of the provided character
     pub fn find<'a>(&'a self, search_char: char) -> impl Iterator<Item = (usize, usize)> + 'a {
-        self
-            .iter_points()
-            .filter(move |p| self[p] == search_char)
+        self.iter_points().filter(move |p| self[p] == search_char)
     }
 }
 
