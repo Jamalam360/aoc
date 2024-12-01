@@ -1,3 +1,5 @@
-/target
-*.data
-.idea/
+__pycache__/
+.direnv/
+.mypy_cache/
+.pytest_cache/
+src/test.py

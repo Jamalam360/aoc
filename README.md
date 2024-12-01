@@ -1,3 +1,3 @@
-# Advent of Code 2023
+# Advent of Code 2024
 
-My Advent of Code 2023 solutions, written in Rust.
+My Advent of Code 2024 solutions, written in Python.
